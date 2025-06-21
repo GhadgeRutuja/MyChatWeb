@@ -3,8 +3,10 @@ import axios from 'axios'
 import { io } from 'socket.io-client'
 import assets from '../assets/assets'
 
-const socket = io('https://mychatweb-production.up.railway.app')
-
+const socket = io(window.location.hostname.includes('vercel.app')
+  ? 'https://mychatweb-production.up.railway.app'
+  : 'http://localhost:5000'
+)
 const ChatContainer = ({ selectedUser, currentUser }) => {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')

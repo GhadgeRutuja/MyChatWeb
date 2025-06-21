@@ -19,7 +19,7 @@ const RegisterPage = () => {
       return
     }
     try {
-      const res = await axios.post('https://MyChatApp.up.railway.app/api/register', form)
+      const res = await axios.post('https://mychatweb-production.up.railway.app/api/register', form)
       localStorage.setItem('currentUser', JSON.stringify(res.data.user))
       navigate('/')
     } catch (err) {

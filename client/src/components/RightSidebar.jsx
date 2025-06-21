@@ -8,7 +8,7 @@ const RightSidebar = ({ selectedUser, currentUser }) => {
   useEffect(() => {
     if (selectedUser && currentUser) {
       axios
-        .get(`https://MyChatApp.up.railway.app/api/messages?user1=${currentUser.email}&user2=${selectedUser.email}`)
+        .get(`https://mychatweb-production.up.railway.app/api/messages?user1=${currentUser.email}&user2=${selectedUser.email}`)
         .then(res => {
           console.log('Fetched messages:', res.data); // <-- Add this line
           setMediaMessages(res.data.filter(msg => msg.mediaUrl))
@@ -21,7 +21,7 @@ const RightSidebar = ({ selectedUser, currentUser }) => {
   return (
     <div className="h-full bg-[#18122B] p-4 flex flex-col items-center border-l border-[#282142] min-w-[220px]">
       <img
-  src={selectedUser.profilePic ? `https://MyChatApp.up.railway.app${encodeURI(selectedUser.profilePic)}` : assets.avatar_icon}
+  src={selectedUser.profilePic ? `https://mychatweb-production.up.railway.app${encodeURI(selectedUser.profilePic)}` : assets.avatar_icon}
   alt={selectedUser.fullName}
   className="w-20 h-20 rounded-full object-cover border-4 border-violet-500 mb-2"
 />
@@ -38,14 +38,14 @@ const RightSidebar = ({ selectedUser, currentUser }) => {
             msg.mediaUrl.match(/\.(mp4|webm|ogg)$/i) ? (
               <video
                 key={idx}
-                src={`https://MyChatApp.up.railway.app${msg.mediaUrl}`}
+                src={`https://mychatweb-production.up.railway.app${msg.mediaUrl}`}
                 controls
                 className="w-16 h-16 rounded object-cover border border-[#282142]"
               />
             ) : (
               <img
                 key={idx}
-                src={`https://MyChatApp.up.railway.app${msg.mediaUrl}`}
+                src={`https://mychatweb-production.up.railway.app${msg.mediaUrl}`}
                 alt="Chat Media"
                 className="w-16 h-16 rounded object-cover border border-[#282142]"
               />

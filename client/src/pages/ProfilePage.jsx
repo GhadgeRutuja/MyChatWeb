@@ -27,7 +27,7 @@ const ProfilePage = () => {
       const formData = new FormData()
       formData.append('profilePic', picFile)
       formData.append('email', user.email)
-      const res = await axios.post('http://localhost:5000/api/upload-profile-pic', formData, {
+      const res = await axios.post('https://mychatweb-production.up.railway.app/api/upload-profile-pic', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       updatedUser = res.data.user
@@ -43,7 +43,7 @@ const ProfilePage = () => {
       <div className="bg-[#282142] p-8 rounded-xl shadow-lg w-full max-w-md">
         <div className="flex flex-col items-center gap-4">
           <img
-           src={user.profilePic ? `https://MyChatApp.up.railway.app${encodeURI(user.profilePic)}` : assets.avatar_icon}
+           src={user.profilePic ? `https://mychatweb-production.up.railway.app${encodeURI(user.profilePic)}` : assets.avatar_icon}
             alt="Profile"
             className="w-24 h-24 rounded-full object-cover border-4 border-violet-500"
           />

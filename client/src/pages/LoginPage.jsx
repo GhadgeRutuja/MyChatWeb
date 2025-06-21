@@ -19,7 +19,7 @@ const LoginPage = () => {
       return
     }
     try {
-      const res = await axios.post('http://localhost:5000/api/login', form)
+      const res = await axios.post('https://MyChatApp.up.railway.app/api/login', form)
       localStorage.setItem('currentUser', JSON.stringify(res.data.user))
       navigate('/')
     } catch (err) {

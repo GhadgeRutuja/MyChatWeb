@@ -15,6 +15,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
+        'https://my-chat-hi6n5q0cf-ghadgerutujas-projects.vercel.app',
       'http://localhost:3000',
       'http://localhost:5173'
     ],
@@ -22,7 +23,13 @@ const io = new Server(server, {
   }
 });
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://my-chat-hi6n5q0cf-ghadgerutujas-projects.vercel.app',
+    'http://localhost:3000',
+    'http://localhost:5173'
+  ]
+}));
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -193,6 +200,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(5000, () => {
-  console.log('✅ Server is running on port 5000');
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
+  console.log(`✅ Server is running on port ${PORT}`);
 });

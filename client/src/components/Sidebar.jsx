@@ -11,7 +11,7 @@ const Sidebar = ({ selectedUser, setSelectedUser, currentUser }) => {
   useEffect(() => {
     if (currentUser) {
       axios
-        .get(`http://localhost:5000/api/users?email=${currentUser.email}`)
+        .get(`https://MyChatApp.up.railway.app/api/users?email=${currentUser.email}`)
         .then(res => setUserList(res.data))
         .catch(() => setUserList([]))
     }
@@ -62,7 +62,7 @@ const Sidebar = ({ selectedUser, setSelectedUser, currentUser }) => {
             className={`relative flex items-center gap-2 p-2 pl-4 rounded cursor-pointer max-sm:text-sm ${selectedUser && selectedUser._id === user._id ? 'bg-[#282142]/50' : ''}`}
           >
             <img
-  src={user.profilePic ? `http://localhost:5000${encodeURI(user.profilePic)}` : assets.avatar_icon}
+  src={user.profilePic ? `https://MyChatApp.up.railway.app${encodeURI(user.profilePic)}` : assets.avatar_icon}
   alt={user.fullName}
   className='w-[35px] aspect-[1/1] rounded-full'
 />

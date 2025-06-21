@@ -3,7 +3,7 @@ import axios from 'axios'
 import { io } from 'socket.io-client'
 import assets from '../assets/assets'
 
-const socket = io('http://localhost:5000')
+const socket = io('https://MyChatApp.up.railway.app')
 
 const ChatContainer = ({ selectedUser, currentUser }) => {
   const [messages, setMessages] = useState([])
@@ -14,7 +14,7 @@ const ChatContainer = ({ selectedUser, currentUser }) => {
   useEffect(() => {
     if (selectedUser && currentUser) {
       axios
-        .get(`http://localhost:5000/api/messages?user1=${currentUser.email}&user2=${selectedUser.email}`)
+        .get(`https://MyChatApp.up.railway.app/api/messages?user1=${currentUser.email}&user2=${selectedUser.email}`)
         .then(res => setMessages(res.data))
         .catch(() => setMessages([]))
     } else {
@@ -45,7 +45,7 @@ const ChatContainer = ({ selectedUser, currentUser }) => {
     e.preventDefault()
     if (!input.trim() || !currentUser || !selectedUser) return
     try {
-      const res = await axios.post('http://localhost:5000/api/messages', {
+      const res = await axios.post('https://MyChatApp.up.railway.app/api/messages', {
         sender: currentUser.email,
         receiver: selectedUser.email,
         text: input
@@ -69,11 +69,11 @@ const ChatContainer = ({ selectedUser, currentUser }) => {
     if (!file || !currentUser || !selectedUser) return
     const formData = new FormData()
     formData.append('media', file)
-    const res = await axios.post('http://localhost:5000/api/upload-chat-media', formData, {
+    const res = await axios.post('https://MyChatApp.up.railway.app/api/upload-chat-media', formData, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
     if (res.data.success) {
-      const msgRes = await axios.post('http://localhost:5000/api/messages', {
+      const msgRes = await axios.post('https://MyChatApp.up.railway.app/api/messages', {
         sender: currentUser.email,
         receiver: selectedUser.email,
         text: '',
@@ -103,7 +103,7 @@ const ChatContainer = ({ selectedUser, currentUser }) => {
       {/* Header */}
       <div className="flex items-center gap-3 p-4 border-b border-[#282142]">
         <img
-          src={selectedUser.profilePic ? `http://localhost:5000${encodeURI(selectedUser.profilePic)}` : assets.avatar_icon}
+          src={selectedUser.profilePic ? `https://MyChatApp.up.railway.app${encodeURI(selectedUser.profilePic)}` : assets.avatar_icon}
           alt={selectedUser.fullName}
           className="w-10 h-10 rounded-full object-cover"
         />
@@ -121,7 +121,7 @@ const ChatContainer = ({ selectedUser, currentUser }) => {
           >
             {msg.sender !== currentUser.email && (
               <img
-                src={selectedUser.profilePic ? `http://localhost:5000${encodeURI(selectedUser.profilePic)}` : assets.avatar_icon}
+                src={selectedUser.profilePic ? `https://MyChatApp.up.railway.app${encodeURI(selectedUser.profilePic)}` : assets.avatar_icon}
                 alt=""
                 className="w-7 h-7 rounded-full mr-2 self-end"
               />
@@ -137,9 +137,9 @@ const ChatContainer = ({ selectedUser, currentUser }) => {
               {/* Show media if present */}
               {msg.mediaUrl && (
                 msg.mediaUrl.match(/\.(mp4|webm|ogg)$/i) ? (
-                  <video src={`http://localhost:5000${msg.mediaUrl}`} controls className="max-w-[200px] rounded mt-2" />
+                  <video src={`https://MyChatApp.up.railway.app${msg.mediaUrl}`} controls className="max-w-[200px] rounded mt-2" />
                 ) : (
-                  <img src={`http://localhost:5000${msg.mediaUrl}`} alt="media" className="max-w-[200px] rounded mt-2" />
+                  <img src={`https://MyChatApp.up.railway.app${msg.mediaUrl}`} alt="media" className="max-w-[200px] rounded mt-2" />
                 )
               )}
               <div className="text-[10px] text-right text-gray-300 mt-1">
@@ -150,7 +150,7 @@ const ChatContainer = ({ selectedUser, currentUser }) => {
             </div>
             {msg.sender === currentUser.email && (
               <img
-                src={currentUser.profilePic ? `http://localhost:5000${encodeURI(currentUser.profilePic)}` : assets.avatar_icon}
+                src={currentUser.profilePic ? `https://MyChatApp.up.railway.app${encodeURI(currentUser.profilePic)}` : assets.avatar_icon}
                 alt=""
                 className="w-7 h-7 rounded-full ml-2 self-end"
               />
